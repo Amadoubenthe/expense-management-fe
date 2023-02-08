@@ -1,0 +1,39 @@
+<main>
+  <!-- <app-toolbar (openedEvent)="toggleMenu($event)"></app-toolbar> -->
+  <app-toolbar></app-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav [(opened)]="opened" mode="side">
+      <div class="nav-links">
+        <ul>
+          <a>
+            <li routerLink="users" routerLinkActive="active">
+              <mat-icon matListItemIcon>person</mat-icon>
+              <p class="link-folder-text">Utilisateurs</p>
+            </li>
+
+            <li routerLink="products" routerLinkActive="active">
+              <mat-icon matListItemIcon>inventory_2</mat-icon>
+              <p class="link-folder-text">Products</p>
+            </li>
+
+            <li routerLink="home" routerLinkActive="active">
+              <mat-icon matListItemIcon>hotel</mat-icon>
+              <p class="link-folder-text">Me</p>
+            </li>
+
+            <!-- <li routerLink="reservations" routerLinkActive="active">
+              <mat-icon matListItemIcon>hotel</mat-icon>
+              <p class="link-folder-text">Reservations</p>
+            </li> -->
+          </a>
+        </ul>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="px-3 pb-4">
+        <ng-content></ng-content>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</main>
