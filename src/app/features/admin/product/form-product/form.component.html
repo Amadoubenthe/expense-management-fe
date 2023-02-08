@@ -1,0 +1,66 @@
+<h1 mat-dialog-title>{{ editMode ? "Modifier" : "Ajouter" }} un produit</h1>
+<form class="example-form" [formGroup]="form">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Nom</mat-label>
+          <input
+            type="text"
+            formControlName="name"
+            name="name"
+            matInput
+            placeholder="Nom du produit"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Prix</mat-label>
+          <input
+            type="number"
+            name="price"
+            formControlName="price"
+            matInput
+            placeholder="Prix"
+          />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <p>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Rôle</mat-label>
+      <mat-select formControlName="categoryId">
+        <mat-option *ngFor="let role of roles" [value]="role.id">
+          {{ role.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <input
+        type="text"
+        name="description"
+        formControlName="description"
+        matInput
+        placeholder="description"
+      />
+    </mat-form-field>
+  </p>
+
+  <div mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Annuler</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid"
+      (click)="onSubmit()"
+    >
+      {{ editMode ? "Modifier" : "Creer" }}
+    </button>
+  </div>
+</form>

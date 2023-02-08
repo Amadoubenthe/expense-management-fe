@@ -1,0 +1,7 @@
+<h1 mat-dialog-title class="red">Voulez-vous vraiment supprimer ?</h1>
+<p class="text-center red">Cette action est irreversible</p>
+
+<div mat-dialog-actions align="center">
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button mat-button color="warn" (click)="confirmeDialog()">Oui</button>
+</div>

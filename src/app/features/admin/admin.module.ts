@@ -9,6 +9,6 @@ import { ToolbarComponent } from 'src/app/core/components/toolbar/toolbar.compon
 
 @NgModule({
   declarations: [AdminComponent, ToolbarComponent, MainLayoutComponent],
-  imports: [CommonModule, AdminRoutingModule, MaterialModule, MaterialModule],
+  imports: [CommonModule, AdminRoutingModule, MaterialModule],
 })
 export class AdminModule {}
