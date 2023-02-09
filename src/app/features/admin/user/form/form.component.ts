@@ -60,7 +60,7 @@ export class FormComponent implements OnInit {
       lastName: [this.data?.lastName, Validators.required],
       email: [this.data?.email, Validators.required],
       phone: [this.data?.phone, Validators.required],
-      roleId: [this.data?.role, Validators.required],
+      roleId: [this.data?.roleId, Validators.required],
     });
   }
 

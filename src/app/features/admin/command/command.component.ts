@@ -23,7 +23,6 @@ export class CommandComponent implements OnInit {
     'product',
     'amount',
     'designation',
-    'operator',
     'status',
     'actions',
   ];
