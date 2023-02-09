@@ -6,9 +6,10 @@ import { CommandAddComponent } from './command-add/command-add.component';
 import { CommandDeleteComponent } from './command-delete/command-delete.component';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StatusModalComponent } from './status-modal/status-modal.component';
 
 @NgModule({
-  declarations: [CommandAddComponent, CommandDeleteComponent],
+  declarations: [CommandAddComponent, CommandDeleteComponent, StatusModalComponent],
   imports: [
     CommonModule,
     CommandRoutingModule,

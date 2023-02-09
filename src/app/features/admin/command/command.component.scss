@@ -24,3 +24,26 @@ table {
 .th-actions {
   padding-left: 40px;
 }
+
+.span {
+  // color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.rejected {
+  background-color: red;
+}
+
+.validated {
+  background-color: green;
+}
+
+.pending {
+  background-color: #ffd775;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}

@@ -7,6 +7,10 @@ export interface UsersObject {
   data: User[];
 }
 
+export interface oneUserObject {
+  data: User;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -19,8 +23,8 @@ export class UserService {
     return this.http.get<UsersObject>(this.url);
   }
 
-  getUser(id: string | null): Observable<any> {
-    return this.http.get<any>(this.url + '/' + id);
+  getUser(id: number): Observable<oneUserObject> {
+    return this.http.get<oneUserObject>(this.url + '/' + id);
   }
 
   addUser(credentials: User): Observable<User> {

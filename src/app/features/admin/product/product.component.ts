@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Product, User } from 'src/app/core/models';
+import { Payload, Product, User } from 'src/app/core/models';
 // import { UserService } from 'src/app/core/services/user/user.service';
 import {
   MatDialog,
@@ -52,18 +52,38 @@ export class ProductComponent implements OnInit {
 
   products!: Product[];
 
-  userConnected!: any;
+  userConnected!: Payload;
+
+  currentUser!: User;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private productService: ProductService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private tokenService: TokenService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
+    this.getUserConnected();
     this.getProducts();
+    this.getUserById();
+  }
+  getUserConnected(): void {
+    this.userConnected = this.tokenService.getPayload();
+  }
+
+  getUserById() {
+    this.userService.getUser(this.userConnected.id).subscribe((res) => {
+      console.log('le rep: ', res);
+      this.currentUser = res['data'];
+    });
+  }
+
+  isAdmin() {
+    return this.currentUser.roleId == 1;
   }
 
   getProducts() {

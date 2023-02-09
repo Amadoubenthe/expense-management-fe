@@ -8,6 +8,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Command } from 'src/app/core/models';
 import { CommandService } from 'src/app/core/services/command/command.service';
+import { StatusModalComponent } from './status-modal/status-modal.component';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-command',
@@ -18,7 +20,6 @@ export class CommandComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
     'date',
-    'site',
     'product',
     'amount',
     'designation',
@@ -29,6 +30,7 @@ export class CommandComponent implements OnInit {
   dataSource!: MatTableDataSource<Command>;
 
   commands!: Command[];
+  filName = 'command.xlsx';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -40,6 +42,29 @@ export class CommandComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCommands();
+  }
+
+  export() {
+    console.log('Exporter');
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(wb, ws, 'sheet1');
+
+    XLSX.writeFile(wb, this.filName);
+  }
+
+  openDialog(data: Command): void {
+    const dialogRef = this.dialog.open(StatusModalComponent, {
+      data,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      this.getAllCommands();
+    });
   }
 
   getAllCommands() {

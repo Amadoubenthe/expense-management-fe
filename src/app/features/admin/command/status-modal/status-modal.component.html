@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Valider une resevation</h1>
+<form class="example-form" [formGroup]="form">
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select
+        [disabled]="data.status != 'pending'"
+        formControlName="status"
+      >
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{ food.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Annuler</button>
+    <button
+      [disabled]="data.status != 'pending'"
+      mat-button
+      (click)="onSubmit()"
+    >
+      Valider
+    </button>
+  </div>
+</form>
