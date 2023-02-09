@@ -1,0 +1,107 @@
+<h1 mat-dialog-title>{{ editMode ? "Modifier" : "Ajouter" }} une commande</h1>
+<form class="example-form" [formGroup]="form">
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Designation</mat-label>
+      <input
+        type="text"
+        formControlName="designation"
+        name="designation"
+        matInput
+        placeholder="Designation"
+      />
+    </mat-form-field>
+  </p>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Quantité</mat-label>
+          <input
+            type="number"
+            name="quantity"
+            formControlName="quantity"
+            matInput
+            placeholder="Montant"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Reduction</mat-label>
+          <input
+            type="number"
+            name="amount"
+            formControlName="reduction"
+            matInput
+            placeholder="Reduction"
+          />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <p>
+    <!-- <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        formControlName="email"
+        name="email"
+        matInput
+        placeholder="Ex. pat@example.com"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Telephone</mat-label>
+      <input
+        type="tel"
+        name="phone"
+        formControlName="phone"
+        matInput
+        placeholder="2250584108716"
+      />
+    </mat-form-field>
+    <br /> -->
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Site</mat-label>
+      <mat-select formControlName="siteId">
+        <mat-option *ngFor="let site of sites" [value]="site.id">
+          {{ site.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Produit</mat-label>
+      <mat-select formControlName="productId">
+        <mat-option *ngFor="let product of products" [value]="product.id">
+          {{ product.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Categorie</mat-label>
+      <mat-select formControlName="categoryId">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+
+  <div mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Annuler</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid"
+      (click)="onSubmit()"
+    >
+      {{ editMode ? "Modifier" : "Creer" }}
+    </button>
+  </div>
+</form>

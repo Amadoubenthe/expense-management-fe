@@ -121,8 +121,6 @@ export class UserComponent implements OnInit {
   }
 
   addOrEditUser(data?: User): void {
-    console.log('data de butt', data);
-
     const dialogRef = this.dialog.open(FormComponent, {
       width: '500px',
       data,

@@ -6,8 +6,8 @@
       </div>
 
       <div>
-        <button mat-raised-button color="primary" (click)="addOrEditUser()">
-          <mat-icon>add</mat-icon>Ajouter un utilisateur
+        <button mat-raised-button color="primary" (click)="addOrEditCommand()">
+          <mat-icon>add</mat-icon>Ajouter une commande
         </button>
       </div>
     </div>
@@ -31,36 +31,41 @@
           <td mat-cell *matCellDef="let row">{{ row.id }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="firstName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Prénom</th>
-          <td mat-cell *matCellDef="let row">{{ row.firstName }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="lastName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
-          <td mat-cell *matCellDef="let row">{{ row.lastName }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-          <td mat-cell *matCellDef="let row">{{ row.email }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="role">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Rôle</th>
-          <td mat-cell *matCellDef="let row">{{ row.Role?.name }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="phone">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-          <td mat-cell *matCellDef="let row">{{ row.phone }}</td>
-        </ng-container>
-
         <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>
-            Date d'ajout
-          </th>
-          <td mat-cell *matCellDef="let row">{{ row.createdAt }}</td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.createdAt | date : "MM/dd/yy" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="site">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Site</th>
+          <td mat-cell *matCellDef="let row">{{ row.siteId }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="product">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Produit</th>
+          <td mat-cell *matCellDef="let row">{{ row.Product?.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Montant</th>
+          <td mat-cell *matCellDef="let row">{{ row.amount }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="designation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Designation</th>
+          <td mat-cell *matCellDef="let row">{{ row.designation }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="operator">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Operateur</th>
+          <td mat-cell *matCellDef="let row">{{ row.userId }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+          <td mat-cell *matCellDef="let row">{{ row.status }}</td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
@@ -74,10 +79,10 @@
           </th>
           <td mat-cell *matCellDef="let row">
             <div>
-              <button (click)="addOrEditUser(row)" mat-button color="accent">
+              <button (click)="addOrEditCommand(row)" mat-button color="accent">
                 Edit
               </button>
-              <button (click)="deleteUser(row)" mat-button color="warn">
+              <button (click)="deleteCommand(row)" mat-button color="warn">
                 Delete
               </button>
             </div>
