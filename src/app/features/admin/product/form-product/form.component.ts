@@ -15,6 +15,7 @@ import {
   Role,
   RoleService,
 } from 'src/app/core/services/role/role/role.service';
+import { Site, SiteService } from 'src/app/core/services/site/site.service';
 import { TokenService } from 'src/app/core/services/token/token.service';
 
 @Component({
@@ -24,7 +25,7 @@ import { TokenService } from 'src/app/core/services/token/token.service';
 })
 export class FormComponent implements OnInit {
   editMode = false;
-  roles!: Role[];
+  sites!: Site[];
 
   userConnected!: any;
 
@@ -39,7 +40,7 @@ export class FormComponent implements OnInit {
     public dialogRef: MatDialogRef<FormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _snackBar: MatSnackBar,
-    private roleService: RoleService,
+    private siteService: SiteService,
     private tokenService: TokenService
   ) {}
 
@@ -55,8 +56,8 @@ export class FormComponent implements OnInit {
   }
 
   getRoless() {
-    this.roleService.getRoles().subscribe((roles) => {
-      this.roles = roles['data'];
+    this.siteService.getSites().subscribe((roles) => {
+      this.sites = roles['data'];
     });
   }
 
