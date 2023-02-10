@@ -66,7 +66,7 @@ export class FormComponent implements OnInit {
 
   onSubmit() {
     if (!this.editMode) {
-      const password = this.form.value.firstName + '1234';
+      const password = 'password';
 
       const userData: User = {
         ...this.form.value,
@@ -74,8 +74,6 @@ export class FormComponent implements OnInit {
       };
 
       this.usersService.addUser(userData).subscribe((user) => {
-        console.log('response: ', user);
-
         this.openSnackBar('Utilisateur creer avec succes');
         this.onNoClick();
       });
@@ -103,7 +101,7 @@ export class FormComponent implements OnInit {
     this._snackBar.open(message, 'x', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
-      duration: this.durationInSeconds * 1000,
+      duration: this.durationInSeconds * 2000,
     });
   }
 }

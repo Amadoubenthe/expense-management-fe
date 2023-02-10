@@ -113,7 +113,7 @@ export class UserComponent implements OnInit {
   }
 
   isAdmin() {
-    return this.currentUser.roleId == 1;
+    return this.currentUser?.roleId == 1;
   }
 
   getUsers() {

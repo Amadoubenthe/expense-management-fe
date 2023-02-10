@@ -77,13 +77,12 @@ export class ProductComponent implements OnInit {
 
   getUserById() {
     this.userService.getUser(this.userConnected.id).subscribe((res) => {
-      console.log('le rep: ', res);
       this.currentUser = res['data'];
     });
   }
 
   isAdmin() {
-    return this.currentUser.roleId == 1;
+    return this.currentUser?.roleId == 1;
   }
 
   getProducts() {
