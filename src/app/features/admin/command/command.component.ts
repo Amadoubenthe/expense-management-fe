@@ -54,7 +54,7 @@ export class CommandComponent implements OnInit {
 
     this.getAllCommands();
 
-    console.log('commande2 ', this.currentUser.roleId);
+    console.log('commande2 ', this.currentUser?.roleId);
   }
 
   export() {

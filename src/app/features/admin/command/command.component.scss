@@ -33,14 +33,20 @@ table {
 
 .rejected {
   background-color: red;
+  opacity: 0.8;
+  color: white;
 }
 
 .validated {
   background-color: green;
+  opacity: 0.8;
+  color: white;
 }
 
 .pending {
   background-color: #ffd775;
+  opacity: 0.8;
+  color: white;
 }
 
 .flex {

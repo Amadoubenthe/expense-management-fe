@@ -41,7 +41,11 @@ export class LoginComponent implements OnInit {
         console.log(data.access_token);
         this.tokenService.saveToken(data.access_token);
       },
-      (err) => console.log(err)
+      (err) => {
+        console.log(err['error']['message']);
+
+        this.authService.openSnackBar(err['error']['message']);
+      }
     );
   }
 }
