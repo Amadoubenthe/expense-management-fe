@@ -12,7 +12,12 @@
           matInput
           placeholder="Username"
         />
-        <mat-error>Champ requis</mat-error>
+        <mat-error *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+          ><span *ngIf="email?.errors?.['required']">Champ requis</span>
+          <span *ngIf="email?.errors?.['email']"
+            >Veuillez saisir un mail valid</span
+          >
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
@@ -23,7 +28,13 @@
           matInput
           placeholder="Pass"
         />
-        <mat-error>Champ requis</mat-error>
+        <mat-error
+          *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+          ><span *ngIf="password?.errors?.['required']">Champ requis</span>
+          <span *ngIf="password?.errors?.['minlength']"
+            >Veuillez saisir au moins 6 caractères</span
+          >
+        </mat-error>
       </mat-form-field>
 
       <button

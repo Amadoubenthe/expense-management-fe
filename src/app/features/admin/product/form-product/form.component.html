@@ -31,10 +31,10 @@
 
   <p>
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Rôle</mat-label>
+      <mat-label>Sites</mat-label>
       <mat-select formControlName="categoryId">
-        <mat-option *ngFor="let role of roles" [value]="role.id">
-          {{ role.name }}
+        <mat-option *ngFor="let site of sites" [value]="site.id">
+          {{ site.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>

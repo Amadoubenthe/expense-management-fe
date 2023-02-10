@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { TokenService } from 'src/app/core/services/token/token.service';
 
@@ -28,9 +23,16 @@ export class LoginComponent implements OnInit {
 
   private initFormGroup(): void {
     this.loginForm = this.fb.group({
-      email: ['amadouAdmin@test.com', Validators.required],
-      password: ['password', Validators.required],
+      email: ['amadouAdmin@test.com', [Validators.required, Validators.email]],
+      password: ['password', [Validators.required, Validators.minLength(6)]],
     });
+  }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+  get password() {
+    return this.loginForm.get('password');
   }
 
   onSubmit(): void {
@@ -41,19 +43,5 @@ export class LoginComponent implements OnInit {
       },
       (err) => console.log(err)
     );
-  }
-
-  getFormControlErrorText(abstractControl: AbstractControl): string {
-    if (abstractControl.hasError('required')) {
-      return 'Ce champ est requis';
-    } else if (abstractControl.hasError('email')) {
-      return "Merci d'entrer une adresse mail valide";
-    } else if (abstractControl.hasError('minlength')) {
-      return 'Ce numéro de téléphone ne contient pas assez de chiffres';
-    } else if (abstractControl.hasError('maxlength')) {
-      return 'Ce numéro de téléphone contient trop de chiffres';
-    } else {
-      return 'Ce champ contient une erreur';
-    }
   }
 }
