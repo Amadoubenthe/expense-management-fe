@@ -62,14 +62,8 @@
           <td mat-cell *matCellDef="let row">{{ row.designation }}</td>
         </ng-container>
 
-        <!-- <ng-container matColumnDef="operator">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Operateur</th>
-          <td mat-cell *matCellDef="let row">{{ row.userId }}</td>
-        </ng-container> -->
-
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-          <!-- <td mat-cell *matCellDef="let row">{{ row.status }}</td> -->
           <td mat-cell *matCellDef="let row">
             <span *ngIf="row.status === 'validated'" class="validated span">
               {{ row.status }}
@@ -86,17 +80,24 @@
         </ng-container>
 
         <ng-container matColumnDef="actions">
-          <th
-            class="th-actions"
-            mat-header-cell
-            *matHeaderCellDef
-            mat-sort-header
-          >
-            Actions
-          </th>
+          <span>
+            <th
+              class="th-actions"
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              Actions
+            </th>
+          </span>
           <td mat-cell *matCellDef="let row">
             <div>
-              <button (click)="openDialog(row)" mat-button color="primary">
+              <button
+                *ngIf="currentUser?.roleId === 1"
+                (click)="openDialog(row)"
+                mat-button
+                color="primary"
+              >
                 Details
               </button>
               <button (click)="addOrEditCommand(row)" mat-button color="accent">

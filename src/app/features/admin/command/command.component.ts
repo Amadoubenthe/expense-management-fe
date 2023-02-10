@@ -6,10 +6,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Command } from 'src/app/core/models';
+import { Command, Payload, User } from 'src/app/core/models';
 import { CommandService } from 'src/app/core/services/command/command.service';
 import { StatusModalComponent } from './status-modal/status-modal.component';
 import * as XLSX from 'xlsx';
+import { TokenService } from 'src/app/core/services/token/token.service';
+import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
   selector: 'app-command',
@@ -30,17 +32,29 @@ export class CommandComponent implements OnInit {
 
   commands!: Command[];
   filName = 'command.xlsx';
+  userConnected!: Payload;
+  currentUser!: User;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private commandService: CommandService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private tokenService: TokenService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
+    console.log('command');
+
+    this.getUserConnected();
+
+    this.getUserById();
+
     this.getAllCommands();
+
+    console.log('commande2 ', this.currentUser.roleId);
   }
 
   export() {
@@ -69,10 +83,32 @@ export class CommandComponent implements OnInit {
   getAllCommands() {
     this.commandService.getAllCommands().subscribe((resp: CommandObject) => {
       const data = resp['data'];
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      if (this.currentUser.roleId === 1) {
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      } else {
+        const commands = data.filter((c) => {
+          return c.userId === this.currentUser.id;
+        });
+        this.dataSource = new MatTableDataSource(commands);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
     });
+  }
+  getUserConnected(): void {
+    this.userConnected = this.tokenService.getPayload();
+  }
+
+  getUserById() {
+    this.userService.getUser(this.userConnected.id).subscribe((res) => {
+      this.currentUser = res['data'];
+    });
+  }
+
+  isAdmin() {
+    return this.currentUser.roleId == 1;
   }
 
   applyFilter(event: Event) {
