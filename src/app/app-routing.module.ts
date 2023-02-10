@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
@@ -17,8 +18,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    pathMatch: 'full',
-    redirectTo: '',
+    component: NotFoundComponent,
+    data: { title: '404' },
   },
 ];
 
