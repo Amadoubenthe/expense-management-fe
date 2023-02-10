@@ -24,3 +24,5 @@ The backend-end is accessible in this url: https://github.com/Team-INFI-SPVIE/ex
 $ git clone https://github.com/Team-INFI-SPVIE/expense-management-backend.git
 
 ```
+
+The password for all users is : `password`
